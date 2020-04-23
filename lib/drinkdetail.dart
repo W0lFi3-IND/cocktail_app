@@ -27,7 +27,8 @@ fetchData() async {
  var Api = api+id;
  res = await http.get(Api);
  drinksdetails = jsonDecode(res.body)["drinks"];
-  setState(() {
+
+setState(() {
 
   });
 
@@ -60,8 +61,56 @@ fetchData() async {
               ),
             ),
             Card(
+            child: Container(
+              width: 300,
+              child: SingleChildScrollView(
+                child: new ConstrainedBox(
+                  constraints: new BoxConstraints(),
 
+                  child: Padding(
+                    padding: const EdgeInsets.only(top:15.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("Category : "+drinksdetails[0]['strAlcoholic'],style: TextStyle(
+                            fontSize: 16,
+                          ),),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("Glass : "+drinksdetails[0]['strGlass'],style: TextStyle(
+                            fontSize: 16,
+                          ),),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8,left: 50,right: 30),
+                          child:
+                          Center(
+                            child: Text("Ingredient :"+ drinksdetails[0]["strIngredient1"].toString()+",\n"+ drinksdetails[0]["strIngredient2"].toString()+","+ drinksdetails[0]["strIngredient3"].toString()+","
+                                + drinksdetails[0]["strIngredient4"].toString()+","+ drinksdetails[0]["strIngredient5"].toString(),style: TextStyle(
+                              fontSize: 16,
+                            ),),
+                          )
+                          ,
+                        ),
+
+                  Padding(
+                            padding: const EdgeInsets.only(top: 8,left: 50,right: 30),
+                            child: Text("Instructions : "+drinksdetails[0]['strInstructions'],style: TextStyle(
+                              fontSize: 16,
+                            ),),
+                          ),
+
+                      ],
+                    ),
+                  ),
+                ),
+              ),
             )
+              )
+
           ],
         ):CircularProgressIndicator(),
       )
