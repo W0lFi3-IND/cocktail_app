@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cocktail_app/drinkdetail.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -12,7 +13,7 @@ class _HomePageState extends State<HomePage> {
   @override
   var api = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail";
   var res;
-  Map drinks;
+  var drinks;
 
   @override
   void initState() {
@@ -48,6 +49,9 @@ class _HomePageState extends State<HomePage> {
                     ),
                     subtitle:Text("${drink["idDrink"]}") ,
                     leading: CircleAvatar(backgroundImage: NetworkImage(drink["strDrinkThumb"]),),
+                    onTap:(){
+                    Navigator.push(context,MaterialPageRoute(builder: (context)=>DrinkDetail(drink: drink,)));
+                  },
                   );
                 })
             : CircularProgressIndicator(),
